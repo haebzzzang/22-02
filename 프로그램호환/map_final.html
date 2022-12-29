@@ -1,0 +1,93 @@
+<style>
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 1px solid rgb(0, 0, 0);
+        background-color: #ffffff;
+        width: 1050px;
+    }
+
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.1s;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+        background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+        background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 10px 10px;
+        border: 1px solid rgb(255, 255, 255);
+        border-top: none;
+        width: 1000px;
+        height: 600px;
+    }
+</style>
+
+
+
+
+<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'map1')">관광지</button>
+    <button class="tablinks" onclick="openCity(event, 'map2')">맛집</button>
+</div>
+
+<div id="map1" class="tabcontent">
+    <iframe id="parent1" width=1000px; height=100%; src="map1.html" id="video" onload="access1()"></iframe>
+    <script>
+        function access1() {
+            var iframe = document.getElementById("iframe");
+            var innerDoc = (iframe.contentDocument || parent.document.getElementById('parent1').contentWindow);
+            console.log(innerDoc.body);
+        }
+    </script>
+</div>
+
+<div id="map2" class="tabcontent">
+    <iframe width=1000px; height=100%; src="map2.html" id="video2" onload="access2()"></iframe>
+
+    <script>
+        function access2() {
+            var iframe2 = innerDoc.getElementById("iframe2");
+            var innerDoc2 = (iframe2.contentDocument || iframe2.contentWindow.document);
+            console.log(innerDoc2.body);
+        }
+    </script>
+</div>
+<script>
+    function openCity(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
